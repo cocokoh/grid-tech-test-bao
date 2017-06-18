@@ -1,12 +1,10 @@
 //---------------------THE TABLE -----------------------------------------------------------------------------------
-
 // specify the columns
 var columnDefs = [
   {
     headerName: "Currency", field: "currency"
   }
 ];
-
 var rowData = [
   {currency: "gdp", rate: 1.3},
   {currency: "SGD", rate: 2.3}
@@ -49,13 +47,18 @@ fetch(`https://openexchangerates.org/api/historical/${apiDate}.json?app_id=04d5f
 fetch('https://openexchangerates.org/api/latest.json?app_id=04d5f27b626548d69e87c07ef86057a8')
 .then((resp) => resp.json())
 .then(function(data) {
-  for (var i =0; i<Object.keys(data.rates).length; i++){
-    rowData.push({"currency": Object.keys(data.rates)[i], "rate": Object.values(data.rates)[i]})
-  }
+  var string = data.rates
+  localStorage.setItem('added-items', JSON.stringify(string));
 })
 .catch(function(error) {
   console.log(error)
 })
+var retrievedObject = localStorage.getItem('added-items');
+var parsedObject = JSON.parse(retrievedObject);
+for (var i =0; i<Object.keys(parsedObject).length; i++){
+    rowData.push({currency: Object.keys(parsedObject)[i], rate: Object.values(parsedObject)[i]})
+  }
+
 
 document.addEventListener("DOMContentLoaded", function() {
   var eGridDiv = document.querySelector('#myGrid');

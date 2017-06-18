@@ -1,0 +1,25 @@
+// function jsonLoad(callback) {
+//     var xhr = new XMLHttpRequest();
+//     xhr.open('GET', 'https://openexchangerates.org/api/latest.json?app_id=04d5f27b626548d69e87c07ef86057a8'); // by default async
+//     xhr.responseType = 'json'; // in which format you expect the response to be
+//
+//     xhr.onload = function() {
+//         if(this.status == 200) {// onload called even on 404 etc so check the status
+//             callback(this.response);
+//         }
+//     };
+//
+//     xhr.onerror = function() {
+//         console.log('loading data error');
+//     };
+//
+//     xhr.send();
+// }
+
+// jsonLoad(function(data){
+//   var string = data.rates
+//   localStorage.setItem('added-items', JSON.stringify(string));
+// })
+//
+// // ACCESS DATA
+// console.log(Object.keys(parsedObject)[1])
