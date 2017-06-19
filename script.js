@@ -1,8 +1,11 @@
 (function() {
   document.addEventListener("DOMContentLoaded", function() {
     $(document).ready(function() {
+      $("#refresh").css("display", "none")
       $("#submit").on('click', multiply)
       function multiply(e) {
+        $("#submit").css("display", "none")
+        $("#refresh").css("display", "block")
         var rowData = []
         var sin = $(e.target.parentNode).find("input").val()
         //---------------------THE TABLE -----------------------------------------------------------------------------------
@@ -70,7 +73,6 @@
             history5_rate: rates5[i] * sin
           })
         }
-
         var gridOptions = {
           columnDefs: columnDefs,
           rowData: rowData,
@@ -80,9 +82,14 @@
           enableSorting: true,
           enableFilter: true
         };
+
         var eGridDiv = document.querySelector('#myGrid');
         new agGrid.Grid(eGridDiv, gridOptions);
       }
+      $("#refresh").click(function(){
+        window.location.reload()
+        css("display", "none")
+      })
     })
   })
 })()
